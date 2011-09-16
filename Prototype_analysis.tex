@@ -72,7 +72,7 @@ Finding an appropriate web technology for a productive version of PowerPedia is 
 Data on PowerPedia is stored in a MySQL database~\footnote{http://www.mysql.com/}.
   
 \minisec{Architecture}\todo{more details about the architecture? How detailed does it have to be?}
-
+\missingfigure{Figure similar like in~\cite{weiss:inprocPUC:2012}}
 PowerPedia can be installed on any apache server~\footnote{http://www.apache.org/}. Because every component of the eMeter system uses TCP/IP connections for all communications, components can communicate with each other over the internet, over a local network, or they can even reside on the same machine.
 
 In terms of software architecture, the platform follows the REST~\cite{Fielding2000} and Movel-View-Controller (MVC)~\cite{} principles. Both concepts are encouraged by the Recess framework. Recess has build-in support for REST, which enablers users to access PowerPedia's API using URLs~\cite{weiss:inprocPUC:2012}. Also, it already uses a loosely coupled Model-View-Controller architecture.
@@ -122,7 +122,10 @@ The harvester module has a special role in this discussion. Although it is part 
 \subsubsection{Discussion}
 \minisec{Use case}
 One of the major issues with PowerPedia that has to be investigated further is that the use case of the platform is not inherently clear. As mentioned before, according to PowerPedia's documentation, the main purpose of PowerPedia is to be a central storage point for consumption measurement data. Those consumption values are used to enable users to "receive a rating for their device based on other devices already published within the same device-category."~\cite{merklepp}. This mainly seems to aims at users who upload data with the Android eMeter application. When a measurement is performed, in addition to the consumption in watt, users also get back the rating information to better understand the efficiency of the device. 
-For users who access the platform via the web user interface, getting ratings for devices is not so easy anymore. It is also not obvious that this is the main use case for the platform. There is no "Energy efficiency ratings" section, no possibility to compare devices in terms of their energy usage. In the current development stage of the platform, there is no adequate justification yet why there needs to be a web interface.
+Because of this rating, it might turn out that the corresponding device is an inefficient device. Unfortunately, the user already owns it. The usage of such knowledge has to be investigated further.
+
+For users who access the platform via the web user interface, getting ratings for devices is not so easy anymore. It is also not obvious that this is the main use case for the platform. There is no "Energy efficiency ratings" section, no possibility to compare devices in terms of their energy usage. 
+In the current development stage of the platform, there is no adequate justification yet why there is a need for a web interface.
 
 \minisec{Definition of a measurement}
 Collecting measurements on a central server to derive further information from them seems to be a reasonable idea, but unfortunately, exactly the concept of measurements is not trivial. What exactly is measured?    

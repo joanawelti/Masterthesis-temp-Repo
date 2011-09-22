@@ -59,7 +59,7 @@ The HTML representation has following parts:
 \end{description}
 
 \subsubsection{Mobile phone application}
-\missingfigure{include screenshots}
+\missingfigure{include screenshots?}
 
 As the original mobile phone client for the iPhone, the Android eMeter application communicates with the energy server to get data collected by the smart electricity meter. Communication with PowerPedia is new and so far only supported by the Android user interface.
  
@@ -99,14 +99,14 @@ Data on PowerPedia is stored in a MySQL database\footnote{\url{http://www.mysql.
 In terms of software architecture, the platform follows the REST\cite{Fielding2000} and Movel-View-Controller (MVC)\footnote{The original implementation is described in~\cite{burbeck87}} principles. Both concepts are encouraged by the Recess framework. Recess has build-in support for REST, which enablers users to access PowerPedia's API using URIs\footnote{Unified Resource Identifiers (URIs) are strings that identify resources in the web \url{http://www.w3.org/Addressing/}}\cite{weiss:inprocPUC:2012}. 
 %The usual HTTP verbs GET, PUT, POST, and DELETE can be used to access and manipulate resources. Also, REST is very flexible in terms of data representation. By specifying the relevant file extensions (.html for HTML or .json for JSON), the corresponding data formats 
  
-\missingfigure{include Figure 5.3: Powerpedia object model, page 51}
+\missingfigure{include figure similar to Figure 5.3: Powerpedia object model, page 51}
 
 Recess also already uses a loosely coupled Model-View-Controller architecture.
 Figure TODO depicts the resource model of PowerPedia. Because of the importance of comparing devices, the recognition model is central to the system. It defines the interface clients have to use to publish electricity consumption measurements on PowerPedia. A recognition needs to be linked to both a registered user and a device, include a start and end date, and specify the watt values measured at the start date and the end date. Furthermore, it has a creation timestamp.
 
 \minisec{Harvester}
 The harvester's purpose is to fetch data from external webpages and extract their energy efficiency information. This data is parsed from the HTML documents of those pages and then stored in the PowerPedia device database.
-There are several webpages that offer a comparison between devices in the same category. Topten is the site that has been chosen because it proved to be an ideal candidate. According to their international website, Topten is a "search tool, which presents the best appliances in various categories of products"\footnote{\url{http://www.topten.info/english/services/about_topten.html}, accessed in September 2011}. The site was launched in Switzerland in 2000 and has been growing and expanding ever since to seventeen other countries. 
+There are several webpages that offer a comparison between devices in the same category. Topten.ch \footnote{\url{http://www.topten.ch/}} is the site that has been chosen because it proved to be an ideal candidate. According to their international website, Topten is a "search tool, which presents the best appliances in various categories of products"\footnote{\url{http://www.topten.info/english/services/about_topten.html}, accessed in September 2011}. The site was launched in Switzerland in 2000 and has been growing and expanding ever since to seventeen other countries. 
 
 For every new external webpage, the harvester has to be extended due to the individual layout and structure of websites. So far, the harvester is only configured for Topten.ch. A monthly cron job on the host initiates the fetching process. HTML documents are parsed and scanned for category and device information. 
 

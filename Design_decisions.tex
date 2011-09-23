@@ -1,0 +1,48 @@
+\section{Design Decisions}
+- various approaches to evolving a prototype
+- reason why prototype is completely rewritten
+- rewrite, possibility to reconsider platform choice
+
+When building a prototype of a system, there is either the option to build an evolutionary or a throwaway prototype. Evolutionary prototypes eventually develop into the the full system \cite{interactive_systems} and code is reused. Throwaway prototypes are discarded and the final system is rewritten from scratch. 
+
+
+\subsection{Framework options}
+In~\cite{merklepp}, the decision for a suitable framework was made between using a Wiki, implementing PowerPedia as a Facebook application or building the platform from scratch using a web application framework. 
+Because PowerPedia was rewritten, those options were reconsidered as well, including the reasons why they were not favored in the first place. Other options that were evaluated are Recess, Google Web Toolkit (GWT), Lift and Ruby on Rails.  
+
+The possible frameworks were evaluated according to following criterions:
+\begin{description}
+ \item[REST support] For communication between the mobile phone clients and the Energy Server, HTTP calls following a RESTful architecture can be used. By applying the same principle to PowerPedia, no additional communication libraries had to be installed. In order not to have to change the existing mobile phone clients too much, support for RESTful applications must be supported in one way or another.
+ \item[MVC support] In order to build clean, easy to maintain web application, the MVC pattern is basically the standard technique to use. 
+ \item[User accounts] Privacy concerns when publishing energy data have to be considered. Not all the data should be accessible by everyone. User accounts are needed, which should be supported by the framework.
+ \item[Collaboration] Collaboration is an important aspect of the new version of PowerPedia. 
+ \item[Performance] 
+\end{description}
+
+\subsubsection{Wiki}
+"$\rightarrow$ Purpose of Wikis." Wikis have become quite popular over the last few years. They are used in enterprises to have a central knowledge base as well as by individuals to collect information on a topic in a collaborative way. Wikis are used for a wide variety of topics, such as travel~\footnote{\url{http://wikitravel.org/}} or health~\footnote{\url{http://www.ganfyd.org/}}. The most prominent example is certainly Wikipedia, which has the largest user base~\footnote{WikiStats by S23, S23Wiki, 2008-04-03, retrieved 2007-04-07, \url{http://s23.org/wikistats}} and around 90,000 active contributors.
+
+Because of the popularity of Wikis, users are familiar with the concept. Wikis build upon and encourage collaboration by making the editing and creation of pages easy and available for all users. The structure and format of wiki pages are specified with a simplified markup language in most implementations, although the syntax can vary greatly among them. Especially implementations that don't use "WYSIWYG" ("What You See Is What You Get") editing might be difficult to use for novel users as they first have to become familiar with the specific markup language~\footnote{Wikipedia conducted a usability study in 2009: "Every user in this study struggled to get a basic grasp of the editing interface." \url{http://usability.wikimedia.org/wiki/UX_and_Usability_Study}}. 
+
+\subsubsection{Facebook application}
+
+
+
+\subsubsection{Ruby on Rails}
+Ruby on Rails~\footnote{\url{http://rubyonrails.org/}} (RoR) was first introduced in 2003 as a open-source web framework for the Ruby programming language. It consequently implements the Model-View-Controller pattern. 
+RoR strives to make web application development easier by making certain assumptions, which is reflected in its \textit{Convention over Configuration} design principle\footnote{Ruby on Rails description \url{http://guides.rubyonrails.org/getting_started.html#what-is-rails}}. Also, it empathizes the \textit{Don't repeat yourself (DRY)} concept, which means that code that is used in multiple places should only be written once. 
+Using REST as the pattern for web applications is another one of its guiding principles.
+
+Various collaborative web platforms have been implemented with RoR. As mentioned in~\ref{sec:collaborative_web_platforms}, Github is one of them. 43Places\footnote{43Places \url{http://www.43places.com/}} (platform to share stories about places and ask for travel advice), or Writeboard\footnote{Writeboard \url{http://www.writeboard.com/}} (platform to collaboratively work on documents with other people), Ravelry\footnote{Ravelry \url{http://www.ravelry.com/}} (community platform for knitting and crochet where projects can be shared with other people) are other examples.
+
+There has been some controversy about the scalability and performance of RoR. For example, Twitter moved from Ruby on Rails to Scala. It is still used for the front-end, but it was not performant and reliable enough for the backend\cite{twitter_ruby_scala}. On the other hand, Scribd, another one of the largest Rails sites, does not have these issues\footnote{The site delivers on average 36MB of traffic every second. See \url{http://www.scribd.com/doc/49575/Scaling-Rails-Presentation-From-Scribd-Launch} and \url{http://www.scribd.com/doc/27168812/Oh-Shit-How-to-Break-a-Large-Website-and-how-not-to-PDF-version} for more details on how Scribd deals with performance/scalabilty on RoR}.
+
+\subsubsection{Recess}
+The Recess PHP framework was the option that was chosen for the PowerPedia prototype. First of all, it was chosen because of its native support for REST. Second, the Energy Server uses the same technology, which resulted in synergies that could be used. Also, there was already some experience with the framework because of that and it proved to perform well.
+
+In 2011, the situation looks slightly different. Recess is still used on the Energy Server, but some problems have emerged. Recess v0.20 was publicly released in August 2009. For the last two years, the developers of the project have not been very active\footnote{See comments on the plans for 2010: \url{the http://www.recessframework.org/page/new-recess-framework-website}}. The main issue with Recess at the moment is that it requires PHP version 5.2.3+, but it doesn't work with PHP 5.3 yet. PHP version 5.2 is not supported anymore by the PHP team\footnote{"All PHP users should note that the PHP 5.2 series is NOT supported anymore. All users are strongly encouraged to upgrade to PHP 5.3.7." \url{http://ch.php.net/archive/2011.php}}. In order to stick to Recess, an outdated version of PHP has to be used, which, of course, is not desirable.   
+
+\subsubsection{Discussion}
+Personally, RoR is my favorite, as it makes web application programming fun and easy. Also, Behavior Driven Development (BDD) is encouraged  with the help of tools such as RSpec~\footnote{\url{http://rspec.info/}} and Cucumber~\footnote{\url{http://cukes.info/}}.
+
+

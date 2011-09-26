@@ -42,15 +42,15 @@ By connecting devices to Kill A Watt, users can find out how efficient their app
 In contrast to Kill A Watt, solutions like Plogg \footnote{Plogg \url{http://www.plogginternational.com/}} and Energy UFO \footnote{UFO Power Center \url{http://www.energyufo.com/}} don't have a display. Both systems need external software to access measured data.
 The Energy UFO interface is a simple application for the iPhone or iPad, data collected by Ploggs is transmitted to a host computer with the wireless ZigBee technology.  
 
-All of the above mentioned products can only provide feedback on the devices that are directly attached to outlets. To overcome this limitation, several sensors have to be integrated. 
-In work conducted by Guinard et al.\cite{weiss:inprocMUM:2010}, each appliance is plugged into a Plogg sensor node. A smart gateway discovers Ploggs by scanning the environment for Bluetooth devices in a regular interval. The gateway also includes a web server which offers access to the functionalities of the Ploggs using structure URLs in a REST manner. Data collected by the gateway is made available for users over a web and a mobile user interface. The user interfaces poll the gateway every few seconds to get real-time results.   	
-In order to be able to determine the overall consumption, in such systems, every device needs to be connected to a sensor. This fact makes the installation expensive and cumbersome. 
-On the other hand, it is possible to determine the energy guzzlers of the household and to detect devices that use more energy than expected.
+All of the above mentioned products can only provide feedback on the devices that are directly attached to outlets. There is no possibility to determine the overall consumption of the household automatically. 
 % In contrast to solutions
 % Other work has been conducted
 \subsubsection{Combined approaches}
 In the work of Peterson et al.~\cite{Petersen_2009}, WattBot, a system to track real-time and historical home energy consumption is proposed.  
 A data collection hub collects, stores and wirelessly broadcasts data from a circuit breaker box attached to the fuse box. The system breaks down the data collection by individual circuits, which makes it possible to determine the consumption of individual devices as long as they have their own circuit. The authors also propose a user interface for the iPhone and iPod touch. The interface shows a bar diagram of all circuits, sorted by usage. Each bar is colored according to the amount of electricity consumed (figure~\ref{wattbot}).
+
+Other work has been conducted by Guinard et al.\cite{weiss:inprocMUM:2010}, which tries to overcome the drawbacks of socket monitoring systems. Each appliance is plugged into a Plogg meter and the system integrates the data from the various sensors nodes to provide both device-level and household-level feedback. A smart gateway discovers Ploggs by scanning the environment for Bluetooth devices in a regular interval. The gateway also includes a web server which exposes the Ploggs as RESTful resources. Data collected by the gateway is made available for users over a web and a mobile user interface. The user interfaces poll the gateway every few seconds to get real-time results.   	
+In order to be able to determine the overall consumption, in this system and similar ones such as the commercially available AlertMe\footnote{AlertMe SmartEnergy \url{http://www.alertme.com/}}, every device needs to be connected to a sensor. This fact makes the installation expensive and cumbersome. 
 
 \begin{figure}[htbp]
 \begin{center}

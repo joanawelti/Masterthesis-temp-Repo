@@ -1,39 +1,40 @@
 \section{Design Decisions}
-- various approaches to evolving a prototype
-- reason why prototype is completely rewritten
-- rewrite, possibility to reconsider platform choice
-
 When building a prototype of a system, there is either the option to build an evolutionary or a throwaway prototype. Evolutionary prototypes eventually develop into the the full system \cite{interactive_systems} and code is reused. Throwaway prototypes are discarded and the final system is rewritten from scratch. 
 
+Mainly due to problems with the Recess framework\todo{are there more reasons?}, I decided to rewrite PowerPedia from scratch. This includes both the signature server and the harvester in order to be able to get rid of the framework. 
 
 \subsection{Framework options}
-In~\cite{merklepp}, the decision for a suitable framework was made between using a Wiki, implementing PowerPedia as a Facebook application or building the platform from scratch using a web application framework. 
-Because PowerPedia was rewritten, those options were reconsidered as well, including the reasons why they were not favored in the first place. Other options that were evaluated are Recess, Google Web Toolkit (GWT), Lift and Ruby on Rails.  
+In~\cite{merklepp}, using a Wiki, implementing PowerPedia as a Facebook application or building the platform from scratch using a web application framework are the options that were considered. 
+Because PowerPedia was rewritten, those options were reconsidered as well, including the reasons why they were not favored in the first place. Other options that were evaluated are Google Web Toolkit (GWT), Django and Ruby on Rails.  
 
 The possible frameworks were evaluated according to following criterions:
 \begin{description}
- \item[REST support] For communication between the mobile phone clients and the Energy Server, HTTP calls following a RESTful architecture can be used. By applying the same principle to PowerPedia, no additional communication libraries had to be installed. In order not to have to change the existing mobile phone clients too much, support for RESTful applications must be supported in one way or another.
+ \item[Support for REST architecture] For communication between the mobile phone clients and the Energy Server, HTTP calls following a RESTful architecture can be used. By applying the same principle to PowerPedia, no additional communication libraries had to be installed. In order not to have to change the existing mobile phone clients too much, support for RESTful applications must be supported in one way or another.
  \item[MVC support] In order to build clean, easy to maintain web application, the MVC pattern is basically the standard technique to use. 
  \item[User accounts] Privacy concerns when publishing energy data have to be considered. Not all the data should be accessible by everyone. User accounts are needed, which should be supported by the framework.
- \item[Collaboration] Collaboration is an important aspect of the new version of PowerPedia. 
- \item[Performance] 
+ \item[Collaboration] Collaboration is an important aspect of the new version of PowerPedia. The framework should facilitate building a so-called Web 2.0 application.
+ \item[Nationalization] Multiple languages (at least English and German) needs to be supported.
 \end{description}
 
 \subsubsection{Wiki}
 A wiki is an online collaborative writing tool, a web space where anyone can add content and edit articles that have already been published\cite{wiki_collaboration}. Wikis have become quite popular over the last few years. They are used in enterprises to have a central knowledge base as well as by individuals to collect information on a topic in a collaborative way. Wikis are used for a wide variety of topics, such as travel~\footnote{\url{http://wikitravel.org/}} or health~\footnote{\url{http://www.ganfyd.org/}}. The most prominent example is probably Wikipedia, which has the largest user base~\footnote{WikiStats by S23, S23Wiki, 2008-04-03, retrieved 2007-04-07, \url{http://s23.org/wikistats}} and around 90,000 active contributors.
 
-Because of the popularity of Wikis, users are familiar with the concept. Wikis build upon and encourage collaboration by making the editing and creation of pages easy and available for all users. They are various implementations in languages such as PHP or Java\footnote{Wiki Matrix is a good starting place for comparing the features of different wikis: \url{http://www.wikimatrix.org/}}. Generally, wikis offer rich functionality such as full text search, user accounts and version control. The structure and format of wiki pages are specified with a simplified markup language in most implementations, although the syntax can vary greatly among them. Especially implementations that don't use "WYSIWYG" ("What You See Is What You Get") editing might be difficult to use for novel users as they first have to become familiar with the specific markup language\footnote{Wikipedia conducted a usability study in 2009: "Every user in this study struggled to get a basic grasp of the editing interface." \url{http://usability.wikimedia.org/wiki/UX_and_Usability_Study}}\cite{wikis_collaboration}.
+Because of the popularity of Wikis, users are familiar with the concept. Wikis build upon and encourage collaboration by making the editing and creation of pages easy and available for all users. They are various implementations in languages such as PHP or Java\footnote{Wiki Matrix is a good starting place for comparing the features of different wikis: \url{http://www.wikimatrix.org/}}. Generally, wikis offer rich functionality such as full text search, user accounts and version control. Different languages are supported by having different wiki versions for each language.  
+
+The structure and format of wiki pages are specified with a simplified markup language in most implementations, although the syntax can vary greatly among them. Especially implementations that don't use "WYSIWYG" ("What You See Is What You Get") editing might be difficult to use for novel users as they first have to become familiar with the specific markup language\footnote{Wikipedia conducted a usability study in 2009: "Every user in this study struggled to get a basic grasp of the editing interface." \url{http://usability.wikimedia.org/wiki/UX_and_Usability_Study}}\cite{wikis_collaboration}.
 
 
 \subsubsection{Facebook application}
 Currently, Facebook has over 800 million active users. It offers an API for programmers to build applications, which can access user information and integrate functionality of Facebook such as news feeds and notifications. User management is completely managed by Facebook. Applications are loaded into Facebook via iframes, but have to be hosted externally.
 
-For the Velix project as described in~\ref{sec:household_level_feedback}, there exists such a Facebook application called Energy Monsters. According to the application description, the "Energy Monsters application helps you to track your energy consumption. Insert the kWh displayed on your electricity meter once a week and discover your energy monsters. You will get feedback on your average consumption, get tips on how to reduce your consumption and compare yourself to other users. This application will constantly be extended by new functions."   \footnote{Energy Monsters Facebook application \url{www.facebook.com/home.php?#/apps/ application.php?id=102704939189&ref=appd}}. Unfortunately, the application did not find many users. 
+Energy Monsters\footnote{Energy Monsters Facebook application \url{http://www.facebook.com/apps/application.php?id=102704939189}} is such an application. It was developed by the same team that created the Velix project (see section ~\ref{sec:household_level_feedback}). According to the application description, the "Energy Monsters application helps you to track your energy consumption. Insert the kWh displayed on your electricity meter once a week and discover your energy monsters. You will get feedback on your average consumption, get tips on how to reduce your consumption and compare yourself to other users. This application will constantly be extended by new functions." Unfortunately, the application did not find many users. 
+
+Facebook applications can be a good way to supplement a web platform. It is not the intention of Facebook applications to be used as the main platform for a complex system.
 
 \subsubsection{Ruby on Rails}
 Ruby on Rails~\footnote{\url{http://rubyonrails.org/}} (RoR) was first introduced in 2003 as a open-source web framework for the Ruby programming language. It consequently implements the Model-View-Controller pattern. 
 RoR strives to make web application development easier by making certain assumptions, which is reflected in its \textit{Convention over Configuration} design principle\footnote{Ruby on Rails description \url{http://guides.rubyonrails.org/getting_started.html#what-is-rails}}. Also, it empathizes the \textit{Don't repeat yourself (DRY)} concept, which means that code that is used in multiple places should only be written once. 
-Using REST as the pattern for web applications is another one of its guiding principles.
+Using REST as the pattern for web applications is another one of its guiding principles, which sets it apart from other MVC-frameworks. Domain objects are treated as resources and can be managed with the standard HTTP verbs.
 
 Various collaborative web platforms have been implemented with RoR. As mentioned in~\ref{sec:collaborative_web_platforms}, Github is one of them. 43Places\footnote{43Places \url{http://www.43places.com/}} (platform to share stories about places and ask for travel advice), or Writeboard\footnote{Writeboard \url{http://www.writeboard.com/}} (platform to collaboratively work on documents with other people), Ravelry\footnote{Ravelry \url{http://www.ravelry.com/}} (community platform for knitting and crochet where projects can be shared with other people) are other examples.
 
@@ -42,7 +43,18 @@ There has been some controversy about the scalability and performance of RoR. Fo
 \subsubsection{Recess}
 The Recess PHP framework was the option that was chosen for the PowerPedia prototype. First of all, it was chosen because of its native support for REST. Second, the Energy Server uses the same technology, which resulted in synergies that could be used. Also, there was already some experience with the framework because of that and it proved to perform well.
 
-In 2011, the situation looks slightly different. Recess is still used on the Energy Server, but some problems have emerged. Recess v0.20 was publicly released in August 2009. For the last two years, the developers of the project have not been very active\footnote{See comments on the plans for 2010: \url{the http://www.recessframework.org/page/new-recess-framework-website}}. The main issue with Recess at the moment is that it requires PHP version 5.2.3+, but it doesn't work with PHP 5.3 yet. PHP version 5.2 is not supported anymore by the PHP team\footnote{"All PHP users should note that the PHP 5.2 series is NOT supported anymore. All users are strongly encouraged to upgrade to PHP 5.3.7." \url{http://ch.php.net/archive/2011.php}}. In order to stick to Recess, an outdated version of PHP has to be used, which, of course, is not desirable.   
+In 2011, the situation looks slightly different. Recess is still used on the Energy Server, but some problems have emerged. Recess v0.20 was publicly released in August 2009. For the last two years, the developers of the project have not been very active\footnote{See comments on the plans for 2010: \url{the http://www.recessframework.org/page/new-recess-framework-website}}. The main issue with Recess at the moment is that it requires PHP version 5.2.3+, but it doesn't work with PHP 5.3 yet. PHP version 5.2 is not supported anymore by the PHP team\footnote{"All PHP users should note that the PHP 5.2 series is NOT supported anymore. All users are strongly encouraged to upgrade to PHP 5.3.7." \url{http://ch.php.net/archive/2011.php}}. In order to stick to Recess, an outdated version of PHP has to be used, which, of course, is not desirable.  
+
+\subsection{Django}
+Django\footnote{Django \url{https://www.djangoproject.com/}} is a high-level Python Web framework that was created to ease the development of complex, database-driven websites. Similar to Rails, it also adheres to the DRY principle and focuses on automating as much as possible. Data models can be written entirely in Python as the framework comes with an object-relational mapper (ORM). It has a full support for multi-language applications and is able to automatically create an admin interface that lets authenticated users add, change and delete objects. Django is known for its good documentation, which makes it easy to lear how to use the framework.
+
+In order to build RESTful APIs, mini-frameworks such as django-piston\footnote{django-piston http://pypi.python.org/pypi/django-piston} or django-rest-interface\footnote{django-rest-interface http://django-rest-framework.org/} can be included in the project.  
+
+\subsection{Google Web Toolkit}
+Google Web Toolkit (GWT) is a development toolkit that enables developers to build and optimize browser-based applications\footnote{GWT \url{http://code.google.com/webtoolkit/}}.  It allows to write complex front-end applications using Java, which is then complied into highly optimized JavaScript that runs across all browsers. Instead of having to use multiple technologies such as AJAX, HTML or JavaScript, with GWT everything is Java. Many Google products such as Google Wave\footnote{Google Wave \url{wave.google.com/}} (a shared space for discussing and working together) or Orkut\footnote{Orkut \url{www.orkut.com/CommunityJoin}} (a social networking and discussion site) use this technology. GWT is intended for rich client applications. It can be considered a framework to build Rich Internet Applications (RIAs)\footnote{The term "RIA" was first mentioned in a white paper by Macromedia in~\cite{ria}}, which share many characteristics with desktop application software. 
+However, with GWT, the server side of the application is not yet solved. For the server side, any technology can be used. 
+
+
 
 \subsubsection{Discussion}
 Wiki
@@ -52,6 +64,19 @@ Wiki
 \item web platform not main concern, supplement functionality of eMeter mobile clients.
 \end{itemize}
 
+Google Web Toolkit
+\begin{itemize}
+ \item not primarily a front-end application. Should have a web interface, but main built to offer services to mobile phone clients. 
+ \item Client-side toolkit, server side more important in this project
+ \item PowerPedia can not be considered a RIA.
+ \item Plugins to use GTW as a front-end presentation layer with a webframework such as Ruby on Rails and RESTful web services on the back end\footnote{E.g gwt-rails \url{http://code.google.com/p/gwt-rails/}}.
+\end{itemize}
+
+Recess
+\begin{itemize}
+ \item Can be considered a dead project
+ \item Because of problems, no envolvement of prototype or use same framework
+\end{itemize}
 Personally, RoR is my favorite, as it makes web application programming fun and easy. Also, Behavior Driven Development (BDD) is encouraged  with the help of tools such as RSpec~\footnote{\url{http://rspec.info/}} and Cucumber~\footnote{\url{http://cukes.info/}}.
 
 

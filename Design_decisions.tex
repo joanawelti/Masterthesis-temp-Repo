@@ -1,11 +1,15 @@
 \section{Design Decisions}
 When building a prototype of a system, there is either the option to build an evolutionary or a throwaway prototype. Evolutionary prototypes eventually develop into the the full system \cite{interactive_systems} and code is reused. Throwaway prototypes are discarded and the final system is rewritten from scratch. 
 
+The Recess PHP framework was the option that was chosen for the PowerPedia prototype. First of all, it was chosen because of its native support for REST. Second, the Energy Server uses the same technology, which resulted in synergies that could be used. Also, there was already some experience with the framework because of that and it proved to perform well.
+
+In 2011, the situation looks slightly different. Recess is still used on the Energy Server, but some problems have emerged. Recess v0.20 was publicly released in August 2009. For the last two years, the developers of the project have not been very active\footnote{See comments on the plans for 2010: \url{the http://www.recessframework.org/page/new-recess-framework-website}}. The main issue with Recess at the moment is that it requires PHP version 5.2.3+, but it doesn't work with PHP 5.3 yet. PHP version 5.2 is not supported anymore by the PHP team\footnote{"All PHP users should note that the PHP 5.2 series is NOT supported anymore. All users are strongly encouraged to upgrade to PHP 5.3.7." \url{http://ch.php.net/archive/2011.php}}. In order to stick to Recess, an outdated version of PHP has to be used, which, of course, is not desirable.  
+
 Mainly due to problems with the Recess framework\todo{are there more reasons?}, I decided to rewrite PowerPedia from scratch. This includes both the signature server and the harvester in order to be able to get rid of the framework. 
 
 \subsection{Framework options}
 In~\cite{merklepp}, using a Wiki, implementing PowerPedia as a Facebook application or building the platform from scratch using a web application framework are the options that were considered. 
-Because PowerPedia was rewritten, those options were reconsidered as well, including the reasons why they were not favored in the first place. Other options that were evaluated are Google Web Toolkit (GWT), Django and Ruby on Rails.  
+Because PowerPedia was rewritten, those options were reconsidered as well, including the reasons why they were not favored in the first place. Other options that were evaluated are Ruby on Rails, Django, Grails, Google Web Toolkit (GWT), and Struts as a representative for the Java EE family.    
 
 The possible frameworks were evaluated according to following criterions:
 \begin{description}
@@ -14,6 +18,7 @@ The possible frameworks were evaluated according to following criterions:
  \item[User accounts] Privacy concerns when publishing energy data have to be considered. Not all the data should be accessible by everyone. User accounts are needed, which should be supported by the framework.
  \item[Collaboration] Collaboration is an important aspect of the new version of PowerPedia. The framework should facilitate building a so-called Web 2.0 application.
  \item[Internationalization] Multiple languages (at least English and German) needs to be supported.
+ \item[Learning curve] The framework should be easy to use and ease the development of web applications. 
 \end{description}
 
 \subsubsection{Wiki}
@@ -42,15 +47,10 @@ Various collaborative web platforms have been implemented with RoR. As mentioned
 
 There has been some controversy about the scalability and performance of RoR. For example, Twitter moved from Ruby on Rails to Scala. It is still used for the front-end, but it was not performant and reliable enough for the backend\cite{twitter_ruby_scala}. On the other hand, Scribd, another one of the largest Rails sites, does not have these issues\footnote{The site delivers on average 36MB of traffic every second. See \url{http://www.scribd.com/doc/49575/Scaling-Rails-Presentation-From-Scribd-Launch} and \url{http://www.scribd.com/doc/27168812/Oh-Shit-How-to-Break-a-Large-Website-and-how-not-to-PDF-version} for more details on how Scribd deals with performance/scalabilty on RoR}.
 
-\minisec{Recess}
-The Recess PHP framework was the option that was chosen for the PowerPedia prototype. First of all, it was chosen because of its native support for REST. Second, the Energy Server uses the same technology, which resulted in synergies that could be used. Also, there was already some experience with the framework because of that and it proved to perform well.
-
-In 2011, the situation looks slightly different. Recess is still used on the Energy Server, but some problems have emerged. Recess v0.20 was publicly released in August 2009. For the last two years, the developers of the project have not been very active\footnote{See comments on the plans for 2010: \url{the http://www.recessframework.org/page/new-recess-framework-website}}. The main issue with Recess at the moment is that it requires PHP version 5.2.3+, but it doesn't work with PHP 5.3 yet. PHP version 5.2 is not supported anymore by the PHP team\footnote{"All PHP users should note that the PHP 5.2 series is NOT supported anymore. All users are strongly encouraged to upgrade to PHP 5.3.7." \url{http://ch.php.net/archive/2011.php}}. In order to stick to Recess, an outdated version of PHP has to be used, which, of course, is not desirable.  
-
 \minisec{Django}
-Django\footnote{Django \url{https://www.djangoproject.com/}} is a high-level Python Web framework that was created to ease the development of complex, database-driven websites. Similar to Rails, it also adheres to the DRY principle and focuses on automating as much as possible. Data models can be written entirely in Python as the framework comes with an object-relational mapper (ORM). It has a full support for multi-language applications and is able to automatically create an admin interface that lets authenticated users add, change and delete objects. Django is known for its good documentation, which makes it easy to lear how to use the framework.
+Django\footnote{Django \url{https://www.djangoproject.com/}} is a high-level Python Web framework that was created to ease the development of complex, database-driven websites. Similar to Rails, it also adheres to the DRY principle and focuses on automating as much as possible. Data models can be written entirely in Python as the framework comes with an object-relational mapper (ORM). It has a full support for multi-language applications and is able to automatically create an admin interface that lets authenticated users add, change and delete objects. Django comes with a user authentication system, t is known for its good documentation, which makes it easy to lear how to use the framework.
 
-In order to build RESTful APIs, mini-frameworks such as django-piston\footnote{django-piston http://pypi.python.org/pypi/django-piston} or django-rest-interface\footnote{django-rest-interface http://django-rest-framework.org/} can be included in the project. 
+In order to build RESTful APIs, mini-frameworks such as django-piston\footnote{django-piston http://pypi.python.org/pypi/django-piston} or django-rest-interface\footnote{django-rest-interface http://django-rest-framework.org/} can be included in the project. On the other hand, Django comes with a user authentication system, which facilitates user management. 
 
 Collaborative web platforms powered by django include Mahalo\footnote{Mahalo \url{http://www.mahalo.com/}} (a human search engine/question and answer site, where users can pose and answer questions and leave comments) or Key Ingredient\footnote{Key Ingredient \url{http://keyingredient.com/}} (platform to collect, share and publish recipies).   
 
@@ -60,6 +60,9 @@ For REST support, there is a plugin called JSON-REST-API\footnote{\url{http://ww
 
 Compared to traditional Java web frameworks, Grails doesn't need to be configured so heavily. Instead, it uses a set of predefined rules and conventions.
 
+Grails seems to be a nice alternative to Java frameworks such as Spring MVC or Struts, but unfortunately, Groovy is not a very widespread programming language\footnote{E.g according to the TIOBE index: \url{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html} (Index for September 2011)}. On the other hand, because of Groovy and its base on the Java platform, performance and scalability are less a problem than with other frameworks\footnote{A Grails vs Rails Benchmark can be found here \url{http://www.grails.org/Grails+vs+Rails+Benchmark}}. 
+
+There are some collaborative websites that use Grails. Examples include ChatNear Me\footnote{ChatNear Me \url{http://www.chatnearme.com/}} (a location based real-time chat service) and and Your Divebook (a comunity portal for divers).
 
 \subsubsection{RIA platforms}
 The term Rich Internet Applications (RIA) was first mentioned in a white paper by Macromedia in~\cite{ria}. RIAs are a new generation of web applications, they are rich in terms of multimedia support and user interface widgets and responsive by focusing on client-side computation.
@@ -69,34 +72,33 @@ There are several RIA platforms. Google Web Toolkit is maybe one of the better k
 Google Web Toolkit (GWT) is a development toolkit that enables developers to build and optimize browser-based applications\footnote{GWT \url{http://code.google.com/webtoolkit/}}.  It allows to write complex front-end applications using Java, which is then complied into highly optimized JavaScript that runs across all browsers. Instead of having to use multiple technologies such as AJAX, HTML or JavaScript, with GWT everything is Java. Many Google products such as Google Wave\footnote{Google Wave \url{wave.google.com/}} (a shared space for discussing and working together) or Orkut\footnote{Orkut \url{www.orkut.com/CommunityJoin}} (a social networking and discussion site) use this technology. GWT is intended for rich client applications. It can be considered a framework to build Rich Internet Applications (RIAs), which share many characteristics with desktop application software. 
 However, with GWT, the server side of the application is not yet solved. For the server side, any technology can be used. 
 
+\subsubsection{Others}
+\minisec{Struts}
+Apache Struts\footnote{Apache Struts \url{http://struts.apache.org/}}, or Stripes\footnote{Stripes \url{http://www.stripesframework.org/}} is a framework for developing Java EE applications\footnote{Java EE \url{java.sun.com/j2ee/}}.
+According to the Java EE documentation, the platform provides an API and runtime environment for "developing and running large-scale, multi-tiered, scalable, reliable, and secure network applications."\footnote{Your First Cup: An Introduction to the Java EE Platform \url{http://download.oracle.com/javaee/6/firstcup/doc/gkhoy.html}}.
+To overcome the problems of mixing application logic with representation that arise in standard Java EE applications, Struts encourages the MVC architecture. It works well with REST applications and also supports internationalization. 
+
+Struts "stands on the shoulders of giants"\footnote{Struts for Newbies \url{http://struts.apache.org/index.html}}, which means that developers need to be familiar with the underlying technology as well. Thus, Struts has quite a steep learning curve. Moreover, its documentation could be more organized.
+
+There are many websites built with Struts\footnote{See \url{http://wiki.apache.org/struts/PoweredBy}}, but I didn't find any community platforms. 
+
 \subsubsection{Discussion}
-Wiki
-\begin{itemize}
-\item often plain and generic looks
-\item create simple content, not intended as a framework for complex applications. 
-\item web platform not main concern, supplement functionality of eMeter mobile clients.
-\end{itemize}
+\textbf{Wikis} are good for collaboratively creating simple content. However, they are not intended as a framework for complex applications. PowerPedia is both a web site- and application. Certainly for the application part that should be accessed by mobile phone clients, a framework is needed that supports the development of a RESTful, MVC web application. Following the decision in~\cite{merklepp}, the purpose of wikis does not match with the requirements of this project. 
+Wikis can be a good supplement for a platform, but this option was not chosen in this case.
 
-Google Web Toolkit
-\begin{itemize}
- \item not primarily a front-end application. Should have a web interface, but main built to offer services to mobile phone clients. 
- \item Client-centric toolkit, server side more important in this project
- \item PowerPedia can not be considered a RIA.
- \item Plugins to use GTW as a front-end presentation layer with a webframework such as Ruby on Rails and RESTful web services on the back end\footnote{E.g gwt-rails \url{http://code.google.com/p/gwt-rails/}}.
-\end{itemize}
-
-Recess
-\begin{itemize}
- \item Can be considered a dead project
- \item Because of problems, no envolvement of prototype or use same framework
-\end{itemize}
-Personally, RoR is my favorite, as it makes web application programming fun and easy. Also, Behavior Driven Development (BDD) is encouraged  with the help of tools such as RSpec~\footnote{\url{http://rspec.info/}} and Cucumber~\footnote{\url{http://cukes.info/}}.
+\textbf{Google Web Toolkit} is primarily intended to aid front-end application development. PowerPedia does have a web interface, but its primarily purpose was not to be a website but a backend for measurement data. It is a client-centric toolkit, but in this project, the server side was more important. 
+There are plugins to use GTW as a front-end presentation layer with a web framework such as Ruby on Rails and RESTful web services on the back end\footnote{E.g gwt-rails \url{http://code.google.com/p/gwt-rails/}}, but PowerPedia can not be considered a RIA. Rather, it is a community platform in a Web 2.0 sense. Using GWT for the client-side would be an overkill. 
 
 
-Java
-\begin{itemize}
- \item unlike dynamic languages, refactoring, benefits of a good IDE like NetBeans or Eclipse.
-\end{}
+Unlike dynamic languages, using a Java based framework has the advantage of good development environments such as NetBeans or Eclipse with autocompletion, refactoring, and testing environments. \textit{Struts} certainly would have been an option. On the other hand, PowerPedia is no business application. Being able to use the Java EE platform that is intended for large-scale applications would not have been an simplification in this case.  
 
-Other options would have been the Java framework Play\footnote{Play \url{http://www.playframework.org/}}, Grails\footnote{Grails \url{http://grails.org/}} that uses the Groovy programming language or CakePHP\footnote{CakePHP \url{http://cakephp.org}}. Those framework are all very similar in terms of their functionality and architecture choices.  
+\textit{Grails} sounded very interested, but unfortunately, does not seem to be used by many projects. 
+
+For \textbf{Ruby on Rails}, it was very easy to find information. Its documentation is well structured and there are many examples of web platforms that are powered by RoR, especially community and so called Web 2.0 ones.
+Personally, RoR is my favorite framework, as it makes web application programming fun and easy. Also, testing is tightly integrated and encouraged with the help of tools such as RSpec~\footnote{\url{http://rspec.info/}} and Cucumber~\footnote{\url{http://cukes.info/}}. As described above, one can argue that RoR is not suited for applications with high-performance demands (see Twitter example), but this should not be a issue with PowerPedia due to the nature of its electricity domain.  
+
+Other options would have been the Java framework Play\footnote{Play \url{http://www.playframework.org/}} or CakePHP\footnote{CakePHP \url{http://cakephp.org}}, a framework for PHP. These framework are all very similar in terms of their functionality and architectural choices. Since I have not worked with any of them, the decision was made in favor of the framework I am already familiar with, especially because of the time constraints of a Master thesis.  
+
+
+  
 

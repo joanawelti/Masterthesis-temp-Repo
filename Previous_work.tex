@@ -69,7 +69,7 @@ Originally, the mobile phone application was developed in Objective-C for the iP
 
 \subsection{Measurement data}
 \subsubsection{Smart Electricity Meter}
-Table~\ref{meter_values} denotes the values that are directly acquired from the smart meter. The meter logs electricity consumption data once per second per electrical phase. The name extensions $L1$, $L2$, and $L3$ denote the phase to which the respective value belongs. 
+Table~\ref{tab:meter_values} denotes the values that are directly acquired from the smart meter. The meter logs electricity consumption data once per second per electrical phase. The name extensions $L1$, $L2$, and $L3$ denote the phase to which the respective value belongs. 
 Each phase is thus measured separately. 
 
 \begin{table}[htdp]
@@ -96,7 +96,7 @@ phaseShiftCVL1, phaseShiftCVL2, phaseShiftCVL3 & $\phi_1$, $\phi_2$, $\phi_3$ & 
 \hline      
 \end{tabular}
 \end{center}
-\label{meter_values}
+\label{tab:meter_values}
 \end{table}%
 
 With these quantities, further information such as apparent, reactive, and distortion power can be derived. 
@@ -113,13 +113,21 @@ Value & Type & Explanation\\
 \hline
 \hline
 id & ID & unique identifier of recognition \\
+\hline
 deviceId & ID & id of measured device \\ 
+\hline
 startDate & timestamp & time measurement started \\
+\hline
 endDate & timestamp & time measurement ended\\
+\hline
 startWatts & Watt & total energy consumption at starDate  \\
+\hline
 endWatts & Watt & total energy consumption at endDate \\
+\hline
 createdOn & timestamp & time recognition was created\\
+\hline
 userId & ID & id of user recognition is associated to \\
+\hline
 \end{tabular}
 \end{center}
 \label{recognition}

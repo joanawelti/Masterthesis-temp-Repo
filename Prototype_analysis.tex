@@ -83,10 +83,10 @@ The Android eMeter application also includes a new main view that doesn't exist 
 As described earlier, in order to be able to compare devices, measurement data needs to be stored on a central instance. This central instance, in this case PowerPedia, needs to be accessible via both a web interface and mobile phone clients. To achieve this goal, PowerPedia had to be designed in a modular way. Above all, design and architectural decisions had to consider this requirement.
 
 \minisec{Design decisions}
-The PowerPedia web platform was implemented in PHP using the Recess\footnote{\url{http://www.recessframework.org/}} framework, version 0.20. Several platform alternatives were considered, namely using a Wiki, implementing a Facebook application, or building the entire system from scratch with a web application framework. For various reasons, the decision felt on the last option and on Recess. 
+The PowerPedia web platform was implemented in PHP using the Recess\footnote{\url{http://www.recessframework.org/}} framework, version 0.20. Several platform alternatives were considered, namely using a Wiki, implementing a Facebook application, or building the entire system from scratch using a web application framework. For various reasons, the decision felt on the last option and on Recess. 
 One of the advantages of Recess is its support for REST (for details on REST, refer to section TODO). This feature makes developing modular applications easy.
 
-Finding an appropriate web technology for a productive version of PowerPedia is a concern of this thesis as well. Section~\ref{TODO} illustrates various technologies, their advantages and disadvantages, and reasons for choosing Recess in detail.  
+Finding an appropriate web technology for a productive version of PowerPedia is a concern of this thesis as well. Section~\ref{sec:framework_options} illustrates various technologies, their advantages and disadvantages, and reasons for choosing Recess in detail.  
   
 \minisec{Architecture}
 \missingfigure{Figure similar like in~\cite{weiss:inprocPUC:2012}}

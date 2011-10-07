@@ -75,24 +75,26 @@ Each phase is thus measured separately.
 \begin{table}[htdp]
 \caption{Measurement data acquired from the smart electricity meter\cite{recognize_home_appliances}}
 \begin{center}
-\begin{tabular}{|p{3cm}|l|l|l|p{4cm}|}
+\begin{tabular}{|p{5cm}|l|l|p{4cm}|}
 \hline
-Value & Quantity & Type & Unit & Explanation \\
+Value  & Type & Unit & Explanation \\
 \hline
 \hline
-smartMeterId & identifier & int & ID & identifies smart meter\\
+smartMeterId  & int & ID & identifies smart meter\\
 \hline
-created on & timestamp & long & Date & time the meter recorded the measurement\\
+created on & long & Date & timestamp when the meter recorded the measurement\\
 \hline 
-powerL1, powerL2, powerL3 & $P_1$, $P_2$, $P_3$ & double & Watt & real power on $Lx$\\
+powerL1, powerL2, powerL3  & double & Watt & real power on $Lx$\\
 \hline
-currentNeutral & $I_{neu}$ & double & \multirow{2}{*}{Ampere} & current on the wire which is connected to the neutral point \\
-\cline{1-3}\cline{5-5}   
-currentL1, currentL2, currentL3 & $I_{eff1}$, $I_{eff2}$, $I_{eff3}$ & double & & current on circuit $Lx$\\
+currentNeutral & double & \multirow{2}{*}{Ampere} & current on the wire which is connected to the neutral point \\
+\cline{1-2}\cline{4-4}   
+currentL1, currentL2, currentL3 & double & & current on circuit $Lx$\\
 \hline
-voltageL1, voltageL2, voltageL3 & $U_{eff1}$, $U_{eff2}$, $U_{eff3}$ & double & Volt & voltage on circuit $Lx$\\ 
+voltageL1, voltageL2, voltageL3 & double & Volt & voltage on circuit $Lx$\\ 
 \hline
-phaseShiftCVL1, phaseShiftCVL2, phaseShiftCVL3 & $\phi_1$, $\phi_2$, $\phi_3$ & double & Degree & phase shift between the current component of the fundamental frequency and the voltage on $Lx$\\
+%phaseAngleVoltageL2L1, phaseAngleVoltageL3L1 & double & Degree & Phase shift between the voltage of the two indicated phases $L_x$ and $L_y$ \\
+%\hiline
+phaseAngleCurrentVoltageL1, phaseAngleCurrentVoltageL2, phaseAngleCurrentVoltageL3  & double & Degree & phase shift between the current component of the fundamental frequency and the voltage on $Lx$\\
 \hline      
 \end{tabular}
 \end{center}

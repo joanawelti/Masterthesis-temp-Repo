@@ -24,12 +24,14 @@ TODO: Another good example?
 \subsection{Energy feedback systems}
 Existing systems that provide feedback on the electricity usage generally try to help users better understand where energy is wasted and to form a basis for a conscious energy usage~\cite{mattern:inproc:2010}. Three different approaches for such tools can be distinguished. Household-level feedback systems  measure the consumption of the entire household. Devices of this category are mostly installed at the main energy line or in the fuse box. Feedback on a device-level is another approach. Those measuring tools are installed between the device's power plug and the power outlet and measure the consumption of the connected appliance. Lastly, systems can combine the two techniques and measure the energy consumption on household-level and device-level.
 
+Most available solutions focus on the monetary aspect of saving electricity and thus provide feedback in watts and kilowatt hours, since the latter is a common billing unit used by electricity companies. 
+
 \subsubsection{Household level feedback}
 \todo{extend section only if really relevant for this thesis}
 Wattson\footnote{DIY Kyoto \url{http://www.diykyoto.com/}}, Onzo\footnote{Onzo \url{http://www.onzo.co.uk/}}, TED-1000\footnote{
 TED-1000 \url{http://www.theenergydetective.com/}} or Current Cost\footnote{Current Cost \url{http://www.currentcost.com/}} are examples of commercially available solutions to measure the energy consumption on a household level.  Most of those systems have a display in one way or another that displays the current and historic consumption as well as monetary estimations.  
 
-Wattson, for example, has tree components, a display, sensor clip and transmitter. The sensor clip is attached to wires running from the fuse box and the transmitter is installed near the electricity meter. Data collected by the sensor clip is transmitted wirelessly by the transmitter to the display. The display depicts the current electricity consumption in watts and the expected cost. The color of the display changes according to the energy usage in the household. 
+Wattson, for example, has tree components, a display, sensor clip and transmitter. The sensor clip is attached to wires running from the fuse box and the transmitter is installed near the electricity meter. Data collected by the sensor clip is transmitted wirelessly by the transmitter to the display. The display depicts the current electricity consumption in watts and the expected cost for the year. The color of the display changes according to the energy usage in the household. Data transmission intervals can be set from three to twenty four seconds.
 
 As the above mentioned systems only measure the overall consumption, it is not possible to determine where exactly the energy is used. On the other hand, if energy conservation measures are applied, the resulting saving can be tracked quite as it is reflected in the decrease of the overall watt number.
 
@@ -37,10 +39,11 @@ As the above mentioned systems only measure the overall consumption, it is not p
 \todo{extend section only if really relevant for this work}
 Device level feedback solutions provide more specific information on the energy consumption of individual appliances. Kill A Watt \footnote{Kill a Watt \url{http://www.p3international.com/products/special/P4400/P4400-CE.html}} and Click \footnote{Click \url{http://www.ewz.ch/}} are systems that use a small display to depict consumption data. Generally, the displayed information is of rather limited nature due to the size of the display.
  
-By connecting devices to Kill A Watt, users can find out how efficient their appliances are. Its display shows the current consumption and the cumulative consumption in Kilowatt-hours (kWh). Electrical expenses can be calculated by different time periods up to a year. 
+By connecting devices to Kill A Watt, users can find out how efficient their appliances are. Its display shows the current consumption (in Watts) and the cumulative consumption in kilowatt hours, the voltage, electric current, frequency, apparent power, and power factor. Electrical expenses can be calculated by different time periods up to a year. 
 
 In contrast to Kill A Watt, solutions like Plogg \footnote{Plogg \url{http://www.plogginternational.com/}} and Energy UFO \footnote{UFO Power Center \url{http://www.energyufo.com/}} don't have a display. Both systems need external software to access measured data.
-The Energy UFO interface is a simple application for the iPhone or iPad, data collected by Ploggs is transmitted to a host computer with the wireless ZigBee technology.  
+The Energy UFO interface is a simple application for the iPhone or iPad, data collected by Ploggs is transmitted to a host computer with the wireless ZigBee technology. Ploggs  can be customized in terms of logging interval (between one minute and one month) and measures Volts, Amps, Watts, kWh, kVARh and phase angle.
+These values are stored within the Ploggs internal memory and can be downloaded via its wireless connection.
 
 All of the above mentioned products can only provide feedback on the devices that are directly attached to outlets. There is no possibility to determine the overall consumption of the household automatically. 
 % In contrast to solutions
